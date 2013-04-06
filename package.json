@@ -1,6 +1,6 @@
 {
   "name": "grunt-changelog",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Generate a markdown changelog from git commit data",
   "main": "index.js",
   "scripts": {
