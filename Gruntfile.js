@@ -11,10 +11,19 @@ module.exports = function (grunt) {
         'tasks/*.js',
         'test/**/*.js'
       ]
+    },
+    release: {
+      options: {
+        commitMessage: 'v<%= version %>',
+        tagName: 'v<%= version %>',
+        npm: false,
+        push: false
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-release');
 
   grunt.loadTasks('tasks');
 
