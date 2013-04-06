@@ -1,12 +1,15 @@
 {
-  "name": "grunt-changelog",
-  "version": "0.0.3",
+  "name": "grunt-formatted-changelog",
+  "version": "0.0.4",
   "description": "Generate a markdown changelog from git commit data",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btford/grunt-formatted-changelog.git"
+  },
   "keywords": [
     "grunt",
     "changelog"
