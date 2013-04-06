@@ -1,0 +1,21 @@
+{
+  "name": "grunt-changelog",
+  "version": "0.0.0",
+  "description": "Generate a markdown changelog from git commit data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "grunt",
+    "changelog"
+  ],
+  "author": "Brian Ford",
+  "license": "BSD",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.0"
+  }
+}
