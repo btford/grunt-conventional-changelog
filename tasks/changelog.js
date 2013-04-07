@@ -8,7 +8,7 @@ module.exports = function (grunt) {
   grunt.registerTask('changelog', 'generate a changelog from git metadata', function () {
 
     var options = this.options({
-      versionRegex: /^v(\d+)(.\d+)*(-.*)?$/gim, // generate from the last version until this one
+      versionRegex: /^v?(\d+)(.\d+)*(-.*)?$/gim, // generate from the last version until this one
       // dest: 'CHANGELOG.md',
       prepend: true // false to append
     });
