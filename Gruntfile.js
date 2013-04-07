@@ -17,6 +17,11 @@ module.exports = function (grunt) {
         commitMessage: 'v<%= version %>',
         tagName: 'v<%= version %>'
       }
+    },
+    changelog: {
+      options: {
+        dest: 'CHANGELOG.md'
+      }
     }
   });
 
