@@ -109,7 +109,7 @@ module.exports = function (grunt) {
       });
 
       if (options.dest) {
-        var log = grunt.file.read(options.dest);
+        var log = grunt.file.exists(options.dest)?grunt.file.read(options.dest):'';
         if (options.prepend) {
           log = newLog + log;
         } else {
