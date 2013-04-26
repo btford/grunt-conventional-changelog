@@ -109,7 +109,13 @@ module.exports = function (grunt) {
       });
 
       if (options.dest) {
-        var log = grunt.file.read(options.dest);
+        try{
+          var log = grunt.file.read(options.dest);
+        }
+        catch(err){
+          log = '';
+        }
+        
         if (options.prepend) {
           log = newLog + log;
         } else {
