@@ -13,3 +13,10 @@
 * <%= change.msg%> (<%= change.sha1%>)
 <% }) %>
 <% }) %><% } %>
+
+<% if (_(changelog.breaking).size() > 0) { %>## Breaking Changes
+<% _(changelog.breaking).forEach(function(changes, scope) { %>### <%= scope%>
+<% changes.forEach(function(change) { %>
+  <%= change.msg%>
+<% }) %>
+<% }) %><% } %>
