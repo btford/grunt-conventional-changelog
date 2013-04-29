@@ -140,7 +140,7 @@ module.exports = function (grunt) {
           data: {
             changelog: changelog,
             today: grunt.template.today('yyyy-mm-dd'),
-            version : grunt.config('pkg.version'),
+            version: options.version || grunt.config('pkg.version'),
             helpers: {
               //Generates a commit link if we have a repo, else it generates a plain text commit sha1
               commitLink: function(commit) {
