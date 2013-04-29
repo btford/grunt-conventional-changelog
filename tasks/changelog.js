@@ -104,7 +104,7 @@ module.exports = function (grunt) {
         data: {
           changelog: changelog,
           today: grunt.template.today('yyyy-mm-dd'),
-          version : grunt.config('pkg.version')
+          version : (!options.versionFile) ? grunt.config('pkg.version') : grunt.file.readJSON(options.versionFile).version
         }
       });
 
