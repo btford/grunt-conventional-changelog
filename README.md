@@ -42,6 +42,7 @@ Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append 
 ### templateFile
 Template to use. See the [default template](https://raw.github.com/btford/grunt-conventional-changelog/master/template/changelog.md) (used if another isn't provided) for an example of how to write your own.
 
+
 ### github
 Specifies the github repository to use to link to commits in the changelog.
 
@@ -56,6 +57,11 @@ github: 'btford/grunt-conventional-changelog'
 ```js
 github: 'http://github.com/angular/angular.js'
 ```
+
+### version
+A string which contains the value of the version which is used by grunt-conventional-changelog.
+if now version is specified, grunt-conventional-changelog expects a pkg object which has a version property and uses that.
+>>>>>>> feat(changelog): add optional 'version', incase not package.json
 
 
 
