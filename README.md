@@ -42,6 +42,17 @@ Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append 
 ### templateFile
 Template to use. See the [default template](https://raw.github.com/btford/grunt-conventional-changelog/master/template/changelog.md) (used if another isn't provided) for an example of how to write your own.
 
+### github
+The github repository to use to link to commits in the changelog. Defaults to trying to find a github repository in package.json. 
+
+Example configs: 
+```js
+  github: 'btford/grunt-conventional-changelog'
+```
+```js
+  github: 'http://github.com/angular/angular.js'
+```
+
 
 
 ## Usage Examples
