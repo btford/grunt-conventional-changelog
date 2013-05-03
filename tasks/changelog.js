@@ -11,8 +11,38 @@ module.exports = function (grunt) {
 
     var options = this.options({
       // dest: 'CHANGELOG.md',
-      prepend: true // false to append
+      prepend: true, // false to append
     });
+
+    var githubRepo;
+    var pkg = grunt.config('pkg');
+    //If github repo isn't given, try to read it from the package file
+    if (!options.github && pkg) {
+      if (pkg.repository) {
+        githubRepo = pkg.repository.url;
+      } else if (pkg.homepage) {
+        //If it's a github page, but not a *.github.(io|com) page
+        if (pkg.homepage.indexOf('github.com') > -1 &&
+            !pkg.homepage.match(/\.github\.(com|io)/)) {
+          githubRepo = pkg.homepage;
+        }
+      }
+    } else {
+      githubRepo = options.github;
+    }
+    function fixGithubRepo(githubRepo) {
+      //User could set option eg 'github: "btford/grunt-conventional-changelog'
+      if (githubRepo.indexOf('github.com') === -1) {
+        githubRepo = 'http://github.com/' + githubRepo;
+      }
+      return githubRepo
+        .replace(/^git:\/\//, 'http://') //get rid of git://
+        .replace(/\/$/, '') //get rid of trailing slash
+        .replace(/\.git$/, ''); //get rid of trailing .git
+    }
+    if (githubRepo) {
+      githubRepo = fixGithubRepo(githubRepo);
+    }
 
     var template;
     if (options.templateFile) {
@@ -79,7 +109,7 @@ module.exports = function (grunt) {
 
         gitlog.forEach(function (logItem) {
           var lines = logItem.split('\n');
-          var sha1 = lines.shift().substr(0,8); //Only need first 7 chars 
+          var sha1 = lines.shift().substr(0,8); //Only need first 7 chars
           var subject = lines.shift();
 
           var changeMatch,
@@ -110,7 +140,17 @@ module.exports = function (grunt) {
           data: {
             changelog: changelog,
             today: grunt.template.today('yyyy-mm-dd'),
-            version : grunt.config('pkg.version')
+            version : grunt.config('pkg.version'),
+            helpers: {
+              //Generates a commit link if we have a repo, else it generates a plain text commit sha1
+              commitLink: function(commit) {
+                if (githubRepo) {
+                  return '[' + commit + '](' + githubRepo + '/commits/' + commit + ')';
+                } else {
+                  return commit;
+                }
+              }
+            }
           }
         });
 
