@@ -43,14 +43,18 @@ Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append 
 Template to use. See the [default template](https://raw.github.com/btford/grunt-conventional-changelog/master/template/changelog.md) (used if another isn't provided) for an example of how to write your own.
 
 ### github
-The github repository to use to link to commits in the changelog. Defaults to trying to find a github repository in package.json. 
+Specifies the github repository to use to link to commits in the changelog.
 
-Example configs: 
+By default, tries to find a github repository from the information in `package.json`.
+
+Allows a full repository url, or simply `username/repository`.
+
+Example configurations:
 ```js
-  github: 'btford/grunt-conventional-changelog'
+github: 'btford/grunt-conventional-changelog'
 ```
 ```js
-  github: 'http://github.com/angular/angular.js'
+github: 'http://github.com/angular/angular.js'
 ```
 
 
@@ -63,6 +67,8 @@ Run from the command line:
 ```shell
 grunt changelog:from-rev:to-rev >> CHANGELOG.md
 ```
+
+`from-rev` defaults to most recent tag if not provided.
 
 `to-rev` defaults to `HEAD` if not provided.
 
@@ -89,7 +95,7 @@ c5db59b v0.4.0
 ...
 ```
 
-If you provide a `versionRegex`, or tag revisions signifying a new release with a semver like `v1.2.3`, this task will create the following output:
+If you run `changelog` with no `from-rev` or `to-rev` specified, the task will generate a changelog showing all changes from 0.4.0 to HEAD:
 
 ```markdown
 # 0.4.0 (2013-04-06)
