@@ -42,9 +42,9 @@ Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append 
 ### templateFile
 Template to use. See the [default template](https://raw.github.com/btford/grunt-conventional-changelog/master/template/changelog.md) (used if another isn't provided) for an example of how to write your own.
 
-### versionFile
-A file which contains the value of the version which is used by grunt-conventional-changelog. It just has to contain a JSON which declares a version property. This could be for example a `bower.json` file.
-if now versionFile is specified, grunt-conventional-changelog expects a pkg object which has a version property.
+### version
+A string which contains the value of the version which is used by grunt-conventional-changelog.
+if now version is specified, grunt-conventional-changelog expects a pkg object which has a version property and uses that.
 
 
 
