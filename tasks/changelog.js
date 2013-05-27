@@ -12,6 +12,7 @@ module.exports = function (grunt) {
     var options = this.options({
       // dest: 'CHANGELOG.md',
       prepend: true, // false to append
+      enforce: false
     });
 
     var githubRepo;
@@ -30,6 +31,18 @@ module.exports = function (grunt) {
     } else {
       githubRepo = options.github;
     }
+
+    // ensure commit convention, by using a commit hook
+    var gitHookFile = '.git/hooks/commit-msg';
+    if(options.enforce) {
+      // if no commit hook is found, copy from template
+      if(!grunt.file.exists(gitHookFile)) {
+        grunt.file.copy(__dirname + '/../validate-commit-msg.js', gitHookFile);
+        // need to ensure the hook is executable
+        fs.chmodSync(gitHookFile, '0755');
+      }
+    }
+
     function fixGithubRepo(githubRepo) {
       //User could set option eg 'github: "btford/grunt-conventional-changelog'
       if (githubRepo.indexOf('github.com') === -1) {
