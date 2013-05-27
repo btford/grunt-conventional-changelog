@@ -63,7 +63,8 @@ A string which contains the value of the version which is used by grunt-conventi
 if now version is specified, grunt-conventional-changelog expects a pkg object which has a version property and uses that.
 >>>>>>> feat(changelog): add optional 'version', incase not package.json
 
-
+### enforce
+Enforce commit convention by using a commit-hook. based on [this](https://github.com/angular/angular.js/blob/master/validate-commit-msg.js). By Default `false`.
 
 ## Usage Examples
 
