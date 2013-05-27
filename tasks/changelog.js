@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       if(!grunt.file.exists(gitHookFile)) {
         grunt.file.copy(__dirname + '/../validate-commit-msg.js', gitHookFile);
         // need to ensure the hook is executable
-        fs.chmod(gitHookFile, '0755');
+        fs.chmodSync(gitHookFile, '0755');
       }
     }
 
