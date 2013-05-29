@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var sh = require('shelljs');
 
 module.exports = function (grunt) {
 
@@ -49,9 +50,9 @@ module.exports = function (grunt) {
         githubRepo = 'http://github.com/' + githubRepo;
       }
       return githubRepo
-        .replace(/^git:\/\//, 'http://') //get rid of git://
+      .replace(/^git:\/\//, 'http://') //get rid of git://
         .replace(/\/$/, '') //get rid of trailing slash
-        .replace(/\.git$/, ''); //get rid of trailing .git
+      .replace(/\.git$/, ''); //get rid of trailing .git
     }
     if (githubRepo) {
       githubRepo = fixGithubRepo(githubRepo);
@@ -64,123 +65,118 @@ module.exports = function (grunt) {
       template = fs.readFileSync(__dirname + '/../template/changelog.md', 'utf8');
     }
 
-    var gitArgs = [
-      'log',
-      '--format=%H%n%s%n%b%n==END=='
-    ];
+    //If args are given, generate changelog from arg commits
+    var gitArgs = [ 'log', '--format=%H%n%s%n%b%n==END==' ];
     if (this.args.length > 0) {
       var changeFrom = this.args[0], changeTo = this.args[1] || 'HEAD';
-      runGitLog( gitArgs.concat(changeFrom + '..' + changeTo) );
+      gitArgs.push(changeFrom + '..' + changeTo);
 
+      //Else, generate changelog from last tag to HEAD
     } else {
       //Based on: https://github.com/angular/angular.js/blob/master/changelog.js#L184
       //Use tags to find the last commit
-      grunt.util.spawn({
-        cmd: process.platform === 'win32' ? 'git.cmd' : 'git',
-        args: ['describe', '--tags', '--abbrev=0']
-      }, function(code, stdout, stderr) {
-        if (stderr) {
-          return done(false);
-        }
-        var lastTag = stdout.toString().trim();
-        runGitLog( gitArgs.concat(lastTag + '..HEAD') );
-      });
+      var tagResult = sh.exec('git describe --tags --abbrev=0');
+      if (tagResult.code !== 0) {
+        return done(true);
+      }
+      var lastTag = tagResult.output.trim();
+      gitArgs.push(lastTag + '..HEAD');
     }
 
+    //Run git to get the log we need
+    var logResult = sh.exec('git ' + gitArgs.join(' '));
+    if (logResult.code !== 0) {
+      return done(false);
+    }
+    var gitlog = logResult.output.split('\n==END==\n').reverse();
+    makeChangelog(gitlog);
 
-    function runGitLog(args) {
+    function makeChangelog(gitlog) {
 
-      grunt.util.spawn({
-        cmd: process.platform === 'win32' ?  'git.cmd' : 'git',
-        args: args
-      }, function (err, stdout, stderr) {
+      var changelog = {};
 
-        if (stderr) {
-          return done(false);
+      // based on: https://github.com/angular/angular.js/blob/master/changelog.js#L50
+      // see also: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/
+      var COMMIT_MSG_REGEXP = /^(.*)\((.*)\)\:\s(.*)$/;
+      var BREAKING_CHANGE_REGEXP = /BREAKING CHANGE:([\s\S]*)/;
+
+      function addChange(changeType, changeScope, sha1, changeMessage) {
+        if (!changelog[changeType]) {
+          changelog[changeType] = {};
         }
-
-        var changelog = {};
-
-        // based on: https://github.com/angular/angular.js/blob/master/changelog.js#L50
-        // see also: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/
-        var COMMIT_MSG_REGEXP = /^(.*)\((.*)\)\:\s(.*)$/;
-        var BREAKING_CHANGE_REGEXP = /BREAKING CHANGE:([\s\S]*)/;
-        var gitlog = stdout.toString().split('\n==END==\n').reverse();
-
-        function addChange(changeType, changeScope, sha1, changeMessage) {
-          if (!changelog[changeType]) {
-            changelog[changeType] = {};
-          }
-          if (!changelog[changeType][changeScope]) {
-            changelog[changeType][changeScope] = [];
-          }
-          changelog[changeType][changeScope].push({
-            sha1: sha1,
-            msg: changeMessage
-          });
+        if (!changelog[changeType][changeScope]) {
+          changelog[changeType][changeScope] = [];
         }
-
-        gitlog.forEach(function (logItem) {
-          var lines = logItem.split('\n');
-          var sha1 = lines.shift().substr(0,8); //Only need first 7 chars
-          var subject = lines.shift();
-
-          var changeMatch,
-            changeType,
-            changeScope,
-            changeMessage;
-          if ( (changeMatch = subject.match(COMMIT_MSG_REGEXP)) ) {
-            //if it conforms to the changelog style
-            changeType = changeMatch[1];
-            changeScope = changeMatch[2];
-            changeMessage = changeMatch[3];
-          } else {
-            //otherwise
-            changeType = changeScope = 'other';
-            changeMessage = subject;
-          }
-
-          addChange(changeType, changeScope, sha1, changeMessage);
-
-          var breakingMatch = logItem.match(BREAKING_CHANGE_REGEXP);
-          if (breakingMatch) {
-            var breakingMessage = breakingMatch[1];
-            addChange('breaking', changeScope, sha1, breakingMessage);
-          }
+        changelog[changeType][changeScope].push({
+          sha1: sha1,
+          msg: changeMessage
         });
+      }
 
-        var newLog = grunt.template.process(template, {
-          data: {
-            changelog: changelog,
-            today: grunt.template.today('yyyy-mm-dd'),
-            version: options.version || grunt.config('pkg.version'),
-            helpers: {
-              //Generates a commit link if we have a repo, else it generates a plain text commit sha1
-              commitLink: function(commit) {
-                if (githubRepo) {
-                  return '[' + commit + '](' + githubRepo + '/commits/' + commit + ')';
-                } else {
-                  return commit;
-                }
+      gitlog.forEach(function (logItem) {
+        var lines = logItem.split('\n');
+        var sha1 = lines.shift().substr(0,8); //Only need first 7 chars
+        var subject = lines.shift();
+
+        if (!subject) {
+          return; //this is a bad commit message
+        }
+
+        var changeMatch,
+        changeType,
+        changeScope,
+        changeMessage;
+        if ( (changeMatch = subject.match(COMMIT_MSG_REGEXP)) ) {
+          //if it conforms to the changelog style
+          changeType = changeMatch[1];
+          changeScope = changeMatch[2];
+          changeMessage = changeMatch[3];
+        } else {
+          //otherwise
+          changeType = changeScope = 'other';
+          changeMessage = subject;
+        }
+
+        addChange(changeType, changeScope, sha1, changeMessage);
+
+        var breakingMatch = logItem.match(BREAKING_CHANGE_REGEXP);
+        if (breakingMatch) {
+          var breakingMessage = breakingMatch[1];
+          addChange('breaking', changeScope, sha1, breakingMessage);
+        }
+      });
+
+      var newLog = grunt.template.process(template, {
+        data: {
+          changelog: changelog,
+          today: grunt.template.today('yyyy-mm-dd'),
+          version: options.version || grunt.config('pkg.version'),
+          helpers: {
+            //Generates a commit link if we have a repo, else it generates a plain text commit sha1
+            commitLink: function(commit) {
+              if (githubRepo) {
+                return '[' + commit + '](' + githubRepo + '/commits/' + commit + ')';
+              } else {
+                return commit;
               }
             }
           }
-        });
-
-        if (options.dest) {
-          var log = grunt.file.exists(options.dest) ?
-            grunt.file.read(options.dest) : '';
-          if (options.prepend) {
-            log = newLog + log;
-          } else {
-            log += newLog;
-          }
-          grunt.file.write(options.dest, log);
-        } else {
-          console.log(newLog);
         }
-        done();
       });
+
+      if (options.dest) {
+        var log = grunt.file.exists(options.dest) ?
+          grunt.file.read(options.dest) : '';
+        if (options.prepend) {
+          log = newLog + log;
+        } else {
+          log += newLog;
+        }
+        grunt.file.write(options.dest, log);
+      } else {
+        console.log(newLog);
+      }
+      done();
     }
   });
 };
