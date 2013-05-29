@@ -60,8 +60,7 @@ github: 'http://github.com/angular/angular.js'
 
 ### version
 A string which contains the value of the version which is used by grunt-conventional-changelog.
-if now version is specified, grunt-conventional-changelog expects a pkg object which has a version property and uses that.
->>>>>>> feat(changelog): add optional 'version', incase not package.json
+If no version is specified, grunt-conventional-changelog looks for the version in `pkg.version`.
 
 ### enforce
 Enforce commit convention by using a commit-hook. based on [this](https://github.com/angular/angular.js/blob/master/validate-commit-msg.js). By Default `false`.
