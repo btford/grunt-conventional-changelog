@@ -1,4 +1,4 @@
-# 0.0.2 (2013-05-08)
+# 0.1.0 (2013-05-30)
 
 ## Features
 ### log
@@ -8,6 +8,12 @@
 * Add breaking changes section ([04ecfceb](https://github.com/btford/grunt-conventional-changelog/commits/04ecfceb))
 
 * Add smart 'github' option for commit links ([6ac1083a](https://github.com/btford/grunt-conventional-changelog/commits/6ac1083a))
+
+### changelog
+
+* allow 'version' option, to use instead of 'pkg.version' ([4a06569a](https://github.com/btford/grunt-conventional-changelog/commits/4a06569a))
+
+* Allow 'enforce' option: Adds a git hook for commit conventions ([1cbe92cf](https://github.com/btford/grunt-conventional-changelog/commits/1cbe92cf))
 
 
 
@@ -21,6 +27,9 @@
 * version regex now matches the commit messages created by `npm version` by default ([db3985d2](https://github.com/btford/grunt-conventional-changelog/commits/db3985d2))
 
 * fix issue when no changelog exist yet ([c1a31f56](https://github.com/btford/grunt-conventional-changelog/commits/c1a31f56))
+
+
+
 
 
 
