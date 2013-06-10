@@ -16,11 +16,12 @@
   ],
   "author": "Brian Ford",
   "license": "BSD",
-  "dependencies": {},
+  "dependencies": {
+    "shelljs": "~0.1.4"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.0",
-    "grunt-release": "~0.3.3",
-    "shelljs": "~0.1.4"
+    "grunt-release": "~0.3.3"
   }
 }
