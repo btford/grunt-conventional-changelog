@@ -1,3 +1,15 @@
+# 0.1.1 (2013-06-11)
+
+
+
+## Bug fixes
+### task
+
+* Fix shelljs dependency problem ([2db8cf96](https://github.com/btford/grunt-conventional-changelog/commits/2db8cf96))
+
+
+
+
 # 0.1.0 (2013-05-30)
 
 ## Features
