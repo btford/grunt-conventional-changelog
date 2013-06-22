@@ -155,7 +155,7 @@ module.exports = function (grunt) {
             //Generates a commit link if we have a repo, else it generates a plain text commit sha1
             commitLink: function(commit) {
               if (githubRepo) {
-                return '[' + commit + '](' + githubRepo + '/commits/' + commit + ')';
+                return '[' + commit + '](' + githubRepo + '/commit/' + commit + ')';
               } else {
                 return commit;
               }
