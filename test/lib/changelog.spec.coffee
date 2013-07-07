@@ -39,6 +39,27 @@ describe 'changelog', ->
       expect(msg.breaks).to.deep.equal ['some breaking change\n']
 
 
+    it 'should parse Closes in the subject (and remove it)', ->
+      msg = ch.parseRawCommit(
+        '13f31602f396bc269076ab4d389cfd8ca94b20ba\n' +
+        'feat(xxx): Whatever Closes #24\n' +
+        'bla bla bla\n\n' +
+        'What not ?\n')
+
+      expect(msg.closes).to.deep.equal [24]
+      expect(msg.subject).to.equal 'Whatever'
+
+    it 'should parse Fixes in the subject (and remove it)', ->
+      msg = ch.parseRawCommit(
+        '13f31602f396bc269076ab4d389cfd8ca94b20ba\n' +
+        'feat(xxx): Whatever Fixes #25\n' +
+        'bla bla bla\n\n' +
+        'What not ?\n')
+
+      expect(msg.closes).to.deep.equal [25]
+      expect(msg.subject).to.equal 'Whatever'
+
+
     it 'should parse a msg without scope', ->
       msg = ch.parseRawCommit(
         '13f31602f396bc269076ab4d389cfd8ca94b20ba\n' +
