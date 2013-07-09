@@ -53,7 +53,8 @@ module.exports = function (grunt) {
 
     // generate changelog
     changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {
-      grunt.file.write(options.dest, data + grunt.file.read(options.dest));
+      var currentLog = grunt.file.exists(options.dest) ? grunt.file.read(options.dest) : '';
+      grunt.file.write(options.dest, data + currentLog);
 
       if (options.editor) {
         exec(options.editor + ' ' + options.dest, function(err) {
