@@ -60,6 +60,17 @@ describe 'changelog', ->
       expect(msg.subject).to.equal 'Whatever'
 
 
+    it 'should parse multiple issues closed with Closes #1, #2', ->
+      msg = ch.parseRawCommit(
+        '13f31602f396bc269076ab4d389cfd8ca94b20ba\n' +
+        'feat(xxx): Very cool commit\n' +
+        'bla bla bla\n\n' +
+        'Closes #1, #22, #33\n' +
+        'What not ?\n')
+
+      expect(msg.closes).to.deep.equal [1, 22, 33]
+
+
     it 'should parse a msg without scope', ->
       msg = ch.parseRawCommit(
         '13f31602f396bc269076ab4d389cfd8ca94b20ba\n' +
