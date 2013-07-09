@@ -30,12 +30,20 @@ module.exports = function (grunt) {
           'test/**/*.coffee'
         ]
       }
+    },
+
+    watch: {
+      unittests: {
+        files: ['test/**/*.coffee', 'lib/**/*.js'],
+        tasks: ['test']
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.loadTasks('tasks');
 
