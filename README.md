@@ -1,7 +1,10 @@
-# grunt-conventional-changelog
-Generate a changelog from git metadata.
+# grunt-conventional-changelog  [![Build Status](https://secure.travis-ci.org/btford/grunt-conventional-changelog.png?branch=master)](http://travis-ci.org/btford/grunt-conventional-changelog)
 
-Uses [these](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/) conventions.
+Generate a changelog from git metadata, using [these](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/) conventions.
+
+## Example output
+- https://github.com/btford/grunt-conventional-changelog/blob/master/CHANGELOG.md
+- https://github.com/karma-runner/karma/blob/master/CHANGELOG.md
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -34,14 +37,10 @@ grunt.initConfig({
 ## Options
 
 ### dest
-The destination to write the changelog. If undefined, the changelog will be written to `console.log`.
+Defaults to `CHANGELOG.md`. The destination to write the changelog.
 
 ### prepend
 Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append new log info.
-
-### templateFile
-Template to use. See the [default template](https://raw.github.com/btford/grunt-conventional-changelog/master/template/changelog.md) (used if another isn't provided) for an example of how to write your own.
-
 
 ### github
 Specifies the github repository to use to link to commits in the changelog.
@@ -62,60 +61,10 @@ github: 'http://github.com/angular/angular.js'
 A string which contains the value of the version which is used by grunt-conventional-changelog.
 If no version is specified, grunt-conventional-changelog looks for the version in `pkg.version`.
 
-### enforce
-Enforce commit convention by using a commit-hook. based on [this](https://github.com/angular/angular.js/blob/master/validate-commit-msg.js). By Default `false`.
+### editor
+If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.
 
-## Usage Examples
-
-### CLI
-Run from the command line:
-
-```shell
-grunt changelog:from-rev:to-rev >> CHANGELOG.md
-```
-
-`from-rev` defaults to most recent tag if not provided.
-
-`to-rev` defaults to `HEAD` if not provided.
-
-### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  changelog: {
-    options: {}
-  },
-})
-```
-
-### Task
-
-Say you have the following `git log --oneline`:
-
-```
-6d6f21e feat(build): use Grunt for building Batarang
-8f77864 feat(test): switch from testacular to karma
-c5db59b v0.4.0
-4682d4b feat(something)
-...
-```
-
-If you run `changelog` with no `from-rev` or `to-rev` specified, the task will generate a changelog showing all changes from 0.4.0 to HEAD:
-
-```markdown
-# 0.4.0 (2013-04-06)
-
-## Features
-### test
-
-* switch from testacular to karma (8f77864)
-
-### build
-
-* use Grunt for building Batarang (6d6f21e)
-```
-
+For instance you can set it to `sublime -w`.
 
 ## License
 BSD
