@@ -1,3 +1,19 @@
+<a name="v1.0.0"></a>
+## v1.0.0 (2013-07-17)
+
+
+#### Bug Fixes
+
+* append if prepend set to false ([bdc56349](https://github.com/btford/grunt-conventional-changelog/commit/bdc563498d21de2be468c38ed3791825f4646146))
+* Write whether file exists or not ([a2f663c0](https://github.com/btford/grunt-conventional-changelog/commit/a2f663c0c08bd7cbc6316389d89d6c327b0bd7db))
+
+
+#### Features
+
+* parse multiple "Closes" definitions ([57e93d77](https://github.com/btford/grunt-conventional-changelog/commit/57e93d77de638d7701d6df837f216ca79ccf18fa))
+* parse Closes/Fixes from subject ([8bcd7a39](https://github.com/btford/grunt-conventional-changelog/commit/8bcd7a39c2e32cad775af874d26ec91cb56a3a4e))
+* replace with the changelog task from karma ([25a01c7c](https://github.com/btford/grunt-conventional-changelog/commit/25a01c7c7e55bcc2f87fb34e850b6c254f70ee7f))
+
 <a name="v0.1.2"></a>
 ### v0.1.2 (2013-06-23)
 
