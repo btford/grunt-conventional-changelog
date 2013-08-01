@@ -47,7 +47,10 @@ describe 'validate-commit-msg', ->
 
     it 'should validate type', ->
       expect(m.validateMessage 'weird($filter): something').to.equal INVALID
-      expect(errors).to.deep.equal ['INVALID COMMIT MSG: "weird" is not allowed type !']
+      expect(errors).to.deep.equal [
+        'INVALID COMMIT MSG: "weird" is not allowed type !\n' +
+        '  Valid <type> values are: feat, fix, docs, style, refactor, test, chore'
+      ]
 
 
     it 'should allow empty scope', ->
