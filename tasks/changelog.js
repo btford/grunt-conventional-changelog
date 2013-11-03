@@ -4,6 +4,7 @@ var changelog = require('../lib/changelog');
 
 // TODO: clean this up and write tests for it
 var figureOutGithubRepo = function(githubRepo, pkg) {
+  githubRepo = githubRepo || '';
 
   //If github repo isn't given, try to read it from the package file
   if (!githubRepo && pkg) {
