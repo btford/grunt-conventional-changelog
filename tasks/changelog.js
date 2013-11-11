@@ -43,7 +43,8 @@ module.exports = function (grunt) {
       prepend: true,  // false to append
       github: null,   // default from package.json
       version: null,  // default value from package.json
-      editor: null    // 'sublime -w'
+      editor: null,   // 'sublime -w'
+      lastTag: null   // optionally set the last tag explicitly (useful if auto recognition fails)
     });
 
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
@@ -52,7 +53,7 @@ module.exports = function (grunt) {
 
 
     // generate changelog
-    changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {
+    changelog.generate(githubRepo, 'v' + newVersion, options.lastTag).then(function(data) {
       var currentLog = grunt.file.exists(options.dest) ? grunt.file.read(options.dest) : '';
       grunt.file.write(options.dest, options.prepend ? data + currentLog : currentLog + data);
 
