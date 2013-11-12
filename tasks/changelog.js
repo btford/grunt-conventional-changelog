@@ -40,10 +40,16 @@ module.exports = function (grunt) {
     var done = this.async();
     var options = this.options({
       dest: 'CHANGELOG.md',
-      prepend: true,  // false to append
-      github: null,   // default from package.json
-      version: null,  // default value from package.json
-      editor: null    // 'sublime -w'
+      //false to append
+      prepend: true,
+      //default from package.json
+      github: null,
+      //default value from package.json
+      version: null,
+      // 'sublime -w'
+      editor: null,
+      //default command to figure out last tag. Can be overwritten to match different workflows
+      previousTagCmd: 'git describe --tags --abbrev=0'
     });
 
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
@@ -52,7 +58,7 @@ module.exports = function (grunt) {
 
 
     // generate changelog
-    changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {
+    changelog.generate(githubRepo, 'v' + newVersion, options.previousTagCmd).then(function(data) {
       var currentLog = grunt.file.exists(options.dest) ? grunt.file.read(options.dest) : '';
       grunt.file.write(options.dest, options.prepend ? data + currentLog : currentLog + data);
 
