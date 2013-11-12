@@ -45,7 +45,7 @@ Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append 
 ### github
 Specifies the github repository to use to link to commits in the changelog.
 
-By default, tries to find a github repository from the information in `package.json`.
+By default, tries to find a github repository from the information in grunt `pkg` property. If there is no pkg property tries to find out repository from  `package.json`.
 
 Allows a full repository url, or simply `username/repository`.
 
