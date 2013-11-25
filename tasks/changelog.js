@@ -43,16 +43,17 @@ module.exports = function (grunt) {
       prepend: true,  // false to append
       github: null,   // default from package.json
       version: null,  // default value from package.json
-      editor: null    // 'sublime -w'
+      editor: null,   // 'sublime -w'
+      allnested: false// true for all changes nested
     });
 
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
     var githubRepo = figureOutGithubRepo(options.github, pkg);
     var newVersion = options.version || pkg.version;
-
+    var allNested = options.allnested || grunt.file.read(options.allnested)
 
     // generate changelog
-    changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {
+    changelog.generate(githubRepo, 'v' + newVersion, allNested).then(function(data) {
       var currentLog = grunt.file.exists(options.dest) ? grunt.file.read(options.dest) : '';
       grunt.file.write(options.dest, options.prepend ? data + currentLog : currentLog + data);
 
