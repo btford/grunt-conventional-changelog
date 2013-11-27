@@ -43,13 +43,16 @@ module.exports = function (grunt) {
       prepend: true,  // false to append
       github: null,   // default from package.json
       version: null,  // default value from package.json
+      name: null,     // version name
       editor: null    // 'sublime -w'
     });
 
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
     var githubRepo = figureOutGithubRepo(options.github, pkg);
     var newVersion = options.version || pkg.version;
-
+    if (options.name) {
+      newVersion = newVersion + ' ' + options.name;
+    }
 
     // generate changelog
     changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {

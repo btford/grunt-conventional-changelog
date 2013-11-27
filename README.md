@@ -61,6 +61,9 @@ github: 'http://github.com/angular/angular.js'
 A string which contains the value of the version which is used by grunt-conventional-changelog.
 If no version is specified, grunt-conventional-changelog looks for the version in `pkg.version`.
 
+### name
+A string which contains the name of the version.
+
 ### editor
 If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.
 
