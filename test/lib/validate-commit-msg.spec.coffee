@@ -28,12 +28,12 @@ describe 'validate-commit-msg', ->
       expect(errors).to.deep.equal []
 
 
-    it 'should validate 70 characters length', ->
+    it 'should validate 100 characters length', ->
       msg = 'fix($compile): something super mega extra giga tera long, maybe even longer... ' +
-            'way over 80 characters'
+            'way over 100 characters'
 
-      expect(m.validateMessage msg ).to.equal INVALID
-      expect(errors).to.deep.equal ['INVALID COMMIT MSG: is longer than 70 characters !']
+      expect(m.validateMessage msg).to.equal INVALID
+      expect(errors).to.deep.equal ['INVALID COMMIT MSG: is longer than 100 characters !']
 
 
     it 'should validate "<type>(<scope>): <subject>" format', ->
