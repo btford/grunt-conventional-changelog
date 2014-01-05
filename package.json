@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Brian Ford (http://briantford.com)",
+  "bugs": "https://github.com/btford/grunt-conventional-changelog/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/btford/grunt-conventional-changelog.git"
   },
   "keywords": [
     "grunt",
+    "gruntplugin",
     "changelog"
   ],
   "contributors": [
