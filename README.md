@@ -1,6 +1,10 @@
 # grunt-conventional-changelog  [![Build Status](https://secure.travis-ci.org/btford/grunt-conventional-changelog.png?branch=master)](http://travis-ci.org/btford/grunt-conventional-changelog)
 
-Generate a changelog from git metadata, using [these](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/) conventions.
+Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/conventional-changelog).
+
+Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).  
+
+View [conventional-changelog/CONVENTIONS.md](https://github.com/ajoslin/conventional-changelog/blob/master/CONVENTIONS.md) for a synposis of the conventions with commit examples.
 
 ## Example output
 - https://github.com/btford/grunt-conventional-changelog/blob/master/CHANGELOG.md
@@ -24,6 +28,7 @@ grunt.loadNpmTasks('grunt-conventional-changelog');
 ## Overview
 In your project's Gruntfile, add a section named `changelog` to the data object passed into `grunt.initConfig()`.
 
+
 ```js
 grunt.initConfig({
   changelog: {
@@ -36,30 +41,18 @@ grunt.initConfig({
 
 ## Options
 
+Supports all options from [conventional-changelog](http://github.com/ajoslin/conventional-changelog), with the following changes and additions:
+
 ### dest
-Defaults to `CHANGELOG.md`. The destination to write the changelog.
-
-### prepend
-Defaults to `true`. If true, prepend new log info to `dest`. If `false`, append new log info.
-
-### github
-Specifies the github repository to use to link to commits in the changelog.
-
-By default, tries to find a github repository from the information in `package.json`.
-
-Allows a full repository url, or simply `username/repository`.
-
-Example configurations:
-```js
-github: 'btford/grunt-conventional-changelog'
-```
-```js
-github: 'http://github.com/angular/angular.js'
-```
+Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.  
 
 ### version
-A string which contains the value of the version which is used by grunt-conventional-changelog.
-If no version is specified, grunt-conventional-changelog looks for the version in `pkg.version`.
+Defaults to version in `grunt.config('pkg')` or `package.json`.
+
+### repository
+Defaults to `repository` or `repository.url`, found in `grunt.config('pkg')` or `package.json`.
+
+By default, it expects a github repository. Check [conventional-changelog's README](http://github.com/ajoslin/conventional-changelog) for information on using non-github repositories.
 
 ### editor
 If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.

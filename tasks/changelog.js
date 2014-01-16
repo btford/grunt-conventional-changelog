@@ -1,37 +1,5 @@
+var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
-var changelog = require('../lib/changelog');
-
-
-// TODO: clean this up and write tests for it
-var figureOutGithubRepo = function(githubRepo, pkg) {
-  githubRepo = githubRepo || '';
-
-  //If github repo isn't given, try to read it from the package file
-  if (!githubRepo && pkg) {
-    if (pkg.repository) {
-      githubRepo = pkg.repository.url;
-    } else if (pkg.homepage) {
-      //If it's a github page, but not a *.github.(io|com) page
-      if (pkg.homepage.indexOf('github.com') > -1 &&
-          !pkg.homepage.match(/\.github\.(com|io)/)) {
-        githubRepo = pkg.homepage;
-      }
-    }
-  }
-
-  //User could set option eg 'github: "btford/grunt-conventional-changelog'
-  if (githubRepo.indexOf('github.com') === -1) {
-    githubRepo = 'http://github.com/' + githubRepo;
-  }
-
-  githubRepo = githubRepo
-      .replace(/^git:\/\//, 'http://') //get rid of git://
-      .replace(/\/$/, '') //get rid of trailing slash
-      .replace(/\.git$/, ''); //get rid of trailing .git
-
-  return githubRepo;
-};
-
 
 module.exports = function (grunt) {
 
@@ -39,37 +7,62 @@ module.exports = function (grunt) {
   grunt.registerTask('changelog', DESC, function () {
 
     var done = this.async();
+    var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json') || {};
+
     var options = this.options({
       dest: 'CHANGELOG.md',
       prepend: true,  // false to append
-      github: null,   // default from package.json
-      version: null,  // default value from package.json
-      editor: null    // 'sublime -w'
+      repository: getPackageRepository(pkg),
+      version: pkg.version,
+      editor: null,   // 'sublime -w'
+      github: null    //deprecated
     });
 
-    var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json');
-    var githubRepo = figureOutGithubRepo(options.github, pkg);
-    var newVersion = options.version || pkg.version;
+    //grunt-conventional-changelog options -> conventional-changelog options
+    options.file = options.file || options.dest;
+    options.log = grunt.log.ok.bind(grunt);
+    options.warn = grunt.log.writeln.bind(grunt, '[warn]'.yellow);
+    options.repository = options.repository || options.github || '';
 
+    //deprecated options.github
+    if (options.github) {
+      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
+    }
 
-    // generate changelog
-    changelog.generate(githubRepo, 'v' + newVersion).then(function(data) {
-      var currentLog = grunt.file.exists(options.dest) ? grunt.file.read(options.dest) : '';
-      grunt.file.write(options.dest, options.prepend ? data + currentLog : currentLog + data);
-
-      if (options.editor) {
-        exec(options.editor + ' ' + options.dest, function(err) {
-          if (err) {
-            return grunt.fatal('Can not generate changelog.');
-          }
-
-          grunt.log.ok(options.dest + ' updated');
-          done();
-        });
-      } else {
-        grunt.log.ok(options.dest + ' updated');
-        done();
+    changelog(options, function(err, log) {
+      if (err) {
+        return grunt.fatal('Failed to generate changelog.', err);
       }
+
+      if (options.file) {
+        grunt.file.write(options.file, log);
+        if (options.editor) {
+          exec(options.editor + ' ' + options.file, function(err) {
+            if (err) {
+              return grunt.fatal('Failed to open editor.', err);
+            }
+            grunt.log.ok(options.file + ' updated');
+            done();
+          });
+        } else {
+          grunt.log.ok(options.file + ' updated');
+          done();
+        }
+      } else {
+        grunt.log.writeln(log);
+      }
+
     });
   });
 };
+
+function getPackageRepository(pkg) {
+  var repo = pkg.repository && pkg.repository.url || pkg.repository;
+
+  if (typeof repo !== 'string') {
+    return null;
+  } else {
+    //Change git://github.com/a/b.git to http://github.com/a/b
+    return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
+  }
+}
