@@ -27,7 +27,7 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "conventional-changelog": "0.0.4"
+    "conventional-changelog": "0.0.6"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
