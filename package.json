@@ -27,7 +27,7 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "conventional-changelog": "0.0.6"
+    "conventional-changelog": "git+https://github.com/kronostechnologies/conventional-changelog.git#80f78da2cd2651118db4382e92b36866213c30c9"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
