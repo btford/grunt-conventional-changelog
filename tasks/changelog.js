@@ -1,5 +1,6 @@
 var changelog = require('conventional-changelog');
-var exec = require('child_process').exec;
+var child_process = require('child_process');
+var spawn = child_process.spawn;
 
 module.exports = function (grunt) {
 
@@ -37,13 +38,21 @@ module.exports = function (grunt) {
       if (options.file) {
         grunt.file.write(options.file, log);
         if (options.editor) {
-          exec(options.editor + ' ' + options.file, function(err) {
-            if (err) {
-              return grunt.fatal('Failed to open editor.', err);
-            }
+
+
+  	  var cp = spawn(options.editor, [options.file], {
+            stdio:'inherit'
+          });
+
+          cp.on('exit', function() {
+            console.log('editor ended');
             grunt.log.ok(options.file + ' updated');
             done();
-          });
+          })
+          .on('error', function(err){
+              return grunt.fatal('Failed to open editor.', err);
+  	  });
+
         } else {
           grunt.log.ok(options.file + ' updated');
           done();
@@ -66,3 +75,4 @@ function getPackageRepository(pkg) {
     return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
   }
 }
+
