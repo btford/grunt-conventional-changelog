@@ -1,5 +1,6 @@
 var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
+var resolve = require('url').resolve;
 
 module.exports = function (grunt) {
 
@@ -62,7 +63,14 @@ function getPackageRepository(pkg) {
   if (typeof repo !== 'string') {
     return null;
   } else {
+    var reGit = /^git\:/;
+
+    //Change a/b to https://github.com/a/b
+    if (!/^http(?:s)?\:/.test(repo) || !reGit.test(repo)) {
+      return resolve('https://github.com/', repo);
+    }
+
     //Change git://github.com/a/b.git to http://github.com/a/b
-    return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
+    return repo.replace(/\.git$/, '').replace(reGit, 'http:');
   }
 }
