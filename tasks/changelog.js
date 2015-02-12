@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
     //deprecated options.github
     if (options.github) {
-      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
+      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at https://github.com/btford/grunt-conventional-changelog for more information.');
     }
 
     changelog(options, function(err, log) {
@@ -70,7 +70,7 @@ function getPackageRepository(pkg) {
       return resolve('https://github.com/', repo);
     }
 
-    //Change git://github.com/a/b.git to http://github.com/a/b
-    return repo.replace(/\.git$/, '').replace(reGit, 'http:');
+    //Change git://github.com/a/b.git to https://github.com/a/b
+    return repo.replace(/\.git$/, '').replace(reGit, 'https:');
   }
 }
