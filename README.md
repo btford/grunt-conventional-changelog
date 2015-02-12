@@ -52,7 +52,17 @@ Defaults to version in `grunt.config('pkg')` or `package.json`.
 ### repository
 Defaults to `repository` or `repository.url`, found in `grunt.config('pkg')` or `package.json`.
 
-By default, it expects a github repository. Check [conventional-changelog's README](http://github.com/ajoslin/conventional-changelog) for information on using non-github repositories.
+By default, it expects a github repository. The following will happen if your repo is not a standard url.
+
+`a/b` will be resolved to `https://github.com/a/b`
+
+eg: `yeoman/generator-angular` will become `https://github.com/yeoman/generator-angular`
+
+`git://github.com/a/b.git` will be resolved to `http://github.com/a/b`
+
+eg: `git://github.com/passy/google-cdn.git` will become `http://github.com/passy/google-cdn`
+
+Check [conventional-changelog's README](http://github.com/ajoslin/conventional-changelog) for information on using non-github repositories.
 
 ### editor
 If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.
