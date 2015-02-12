@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json') || {};
 
     var options = this.options({
-      dest: 'CHANGELOG.md',
+      file: 'CHANGELOG.md',
       prepend: true,  // false to append
       repository: getPackageRepository(pkg),
       version: pkg.version,

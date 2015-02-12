@@ -16,12 +16,24 @@ module.exports = function (grunt) {
         commitMessage: 'v<%= version %>',
         tagName: 'v<%= version %>'
       }
+    },
+    changelog: {
+      options: {
+        file: 'test/tmp/changelog',
+        from: 'v0.1.0',
+        to: 'v1.1.0',
+        version: 'v2.0.0'
+      }
+    },
+    clean: {
+      test: ['test/tmp/**']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-release');
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['clean', 'jshint', 'changelog']);
 };
