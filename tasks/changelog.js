@@ -1,3 +1,5 @@
+'use strict';
+
 var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
 
