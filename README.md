@@ -2,7 +2,7 @@
 
 Generate a changelog using [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
-Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).  
+Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
 View [conventional-changelog/CONVENTIONS.md](https://github.com/ajoslin/conventional-changelog/blob/master/CONVENTIONS.md) for a synposis of the conventions with commit examples.
 
@@ -35,8 +35,8 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     }
-  },
-})
+  }
+});
 ```
 
 ## Options
@@ -44,7 +44,7 @@ grunt.initConfig({
 Supports all options from [conventional-changelog](http://github.com/ajoslin/conventional-changelog), with the following changes and additions:
 
 ### dest
-Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.  
+Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.
 
 ### version
 Defaults to version in `grunt.config('pkg')` or `package.json`.
