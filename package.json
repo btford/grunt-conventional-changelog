@@ -2,7 +2,6 @@
   "name": "grunt-conventional-changelog",
   "version": "1.1.0",
   "description": "Generate a markdown changelog from git commit data",
-  "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -10,11 +9,7 @@
     "test": "grunt && node test/test.js && grunt clean"
   },
   "author": "Brian Ford (http://briantford.com)",
-  "bugs": "https://github.com/btford/grunt-conventional-changelog/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/btford/grunt-conventional-changelog.git"
-  },
+  "repository": "btford/grunt-conventional-changelog",
   "keywords": [
     "grunt",
     "gruntplugin",
@@ -39,9 +34,6 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-release": "^0.11.0"
-  },
-  "peerDependencies": {
-    "grunt": ">=0.4.0"
   },
   "files": [
     "tasks"

@@ -4,8 +4,7 @@ var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
 
 module.exports = function (grunt) {
-
-  var DESC = 'Generate a changelog from git metadata.';
+  var DESC = 'Generate a changelog from git metadata';
   grunt.registerTask('changelog', DESC, function () {
 
     var done = this.async();
@@ -20,13 +19,13 @@ module.exports = function (grunt) {
       github: null    //deprecated
     });
 
-    //grunt-conventional-changelog options -> conventional-changelog options
+    // grunt-conventional-changelog options -> conventional-changelog options
     options.file = options.file || options.dest;
     options.log = grunt.log.ok.bind(grunt);
     options.warn = grunt.log.writeln.bind(grunt, '[warn]'.yellow);
     options.repository = options.repository || options.github || '';
 
-    //deprecated options.github
+    // deprecated options.github
     if (options.github) {
       grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
     }
@@ -53,7 +52,6 @@ module.exports = function (grunt) {
       } else {
         grunt.log.writeln(log);
       }
-
     });
   });
 };
@@ -63,8 +61,8 @@ function getPackageRepository(pkg) {
 
   if (typeof repo !== 'string') {
     return null;
-  } else {
-    //Change git://github.com/a/b.git to http://github.com/a/b
-    return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
   }
+
+  //Change git://github.com/a/b.git to http://github.com/a/b
+  return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
 }
