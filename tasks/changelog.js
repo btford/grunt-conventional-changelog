@@ -2,6 +2,7 @@
 
 var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
+var resolve = require('url').resolve;
 
 module.exports = function (grunt) {
 
@@ -28,7 +29,7 @@ module.exports = function (grunt) {
 
     //deprecated options.github
     if (options.github) {
-      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
+      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at https://github.com/btford/grunt-conventional-changelog for more information.');
     }
 
     changelog(options, function(err, log) {
@@ -64,7 +65,14 @@ function getPackageRepository(pkg) {
   if (typeof repo !== 'string') {
     return null;
   } else {
-    //Change git://github.com/a/b.git to http://github.com/a/b
-    return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
+    var reGit = /^git\:/;
+
+    //Change a/b to https://github.com/a/b
+    if (!/^http(?:s)?\:/.test(repo) || !reGit.test(repo)) {
+      return resolve('https://github.com/', repo);
+    }
+
+    //Change git://github.com/a/b.git to https://github.com/a/b
+    return repo.replace(/\.git$/, '').replace(reGit, 'https:');
   }
 }
