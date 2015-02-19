@@ -3,20 +3,20 @@
 var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   var DESC = 'Generate a changelog from git metadata';
-  grunt.registerTask('changelog', DESC, function () {
+  grunt.registerTask('changelog', DESC, function() {
 
     var done = this.async();
     var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json') || {};
 
     var options = this.options({
       file: 'CHANGELOG.md',
-      prepend: true,  // false to append
+      prepend: true, // false to append
       repository: getPackageRepository(pkg),
       version: pkg.version,
-      editor: null,   // 'sublime -w'
-      github: null    //deprecated
+      editor: null, // 'sublime -w'
+      github: null //deprecated
     });
 
     // grunt-conventional-changelog options -> conventional-changelog options
