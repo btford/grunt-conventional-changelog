@@ -1,24 +1,21 @@
 {
-  "globals": {
-    "before": false,
-    "describe": false,
-    "it": false
-  },
-  "node": true,
-  "browser": true,
-  "esnext": true,
   "bitwise": true,
+  "browser": true,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
+  "esnext": true,
   "immed": true,
   "indent": 2,
   "newcap": true,
   "noarg": true,
+  "node": true,
   "quotmark": "single",
-  "regexp": true,
   "undef": true,
   "unused": true,
-  "trailing": true,
-  "smarttabs": true
+  "globals": {
+    "before": false,
+    "describe": false,
+    "it": false
+  }
 }
