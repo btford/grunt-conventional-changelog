@@ -12,10 +12,5 @@
   "node": true,
   "quotmark": "single",
   "undef": true,
-  "unused": true,
-  "globals": {
-    "before": false,
-    "describe": false,
-    "it": false
-  }
+  "unused": true
 }
