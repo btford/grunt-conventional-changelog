@@ -40,23 +40,15 @@ grunt.initConfig({
 
 ## Options
 
-Supports all options from [conventional-changelog](http://github.com/ajoslin/conventional-changelog), with the following changes and additions:
+Supports all options from [conventional-changelog](https://github.com/ajoslin/conventional-changelog#documentation), with the following additions:
 
 ### dest
 Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.
 
-### version
-Defaults to version in `grunt.config('pkg')` or `package.json`.
-
-### repository
-Defaults to `repository` or `repository.url`, found in `grunt.config('pkg')` or `package.json`.
-
-By default, it expects a github repository. Check [conventional-changelog's README](http://github.com/ajoslin/conventional-changelog) for information on using non-github repositories.
-
 ### editor
 If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.
 
-For instance you can set it to `sublime -w`.
+For instance you can set it to `subl -w`.
 
 ## License
 BSD

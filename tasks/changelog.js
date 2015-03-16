@@ -1,5 +1,4 @@
 'use strict';
-
 var changelog = require('conventional-changelog');
 var exec = require('child_process').exec;
 
@@ -8,22 +7,19 @@ module.exports = function(grunt) {
   grunt.registerTask('changelog', DESC, function() {
 
     var done = this.async();
-    var pkg = grunt.config('pkg') || grunt.file.readJSON('package.json') || {};
 
     var options = this.options({
       file: 'CHANGELOG.md',
       prepend: true, // false to append
-      repository: getPackageRepository(pkg),
-      version: pkg.version,
       editor: null, // 'sublime -w'
-      github: null //deprecated
+      github: null // deprecated
     });
 
     // grunt-conventional-changelog options -> conventional-changelog options
     options.file = options.file || options.dest;
     options.log = grunt.log.ok.bind(grunt);
     options.warn = grunt.log.writeln.bind(grunt, '[warn]'.yellow);
-    options.repository = options.repository || options.github || '';
+    options.repository = options.repository || options.github;
 
     // deprecated options.github
     if (options.github) {
@@ -55,14 +51,3 @@ module.exports = function(grunt) {
     });
   });
 };
-
-function getPackageRepository(pkg) {
-  var repo = pkg.repository && pkg.repository.url || pkg.repository;
-
-  if (typeof repo !== 'string') {
-    return null;
-  }
-
-  //Change git://github.com/a/b.git to http://github.com/a/b
-  return repo.replace(/\.git$/, '').replace(/^git\:/, 'http:');
-}
