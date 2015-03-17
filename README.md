@@ -45,8 +45,8 @@ Supports all options from [conventional-changelog](https://github.com/ajoslin/co
 ### dest
 Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.
 
-### editor
-If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog.
+### editor (*deprecated*)
+If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog. **This option will be deprecated in the next major release. Please use [grunt-shell](https://github.com/sindresorhus/grunt-shell) instead.**
 
 For instance you can set it to `subl -w`.
 
