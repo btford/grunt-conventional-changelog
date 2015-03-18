@@ -21,9 +21,14 @@ module.exports = function(grunt) {
     options.warn = grunt.log.writeln.bind(grunt, '[warn]'.yellow);
     options.repository = options.repository || options.github;
 
-    // deprecated options.github
+    // deprecated `options.github`
     if (options.github) {
-      grunt.log.writeln('`changelog.options.github` is deprecated as of version 1.1.0. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
+      grunt.log.writeln('`changelog.options.github` is deprecated. Use `options.repository`. \nView the README at http://github.com/btford/grunt-conventional-changelog for more information.');
+    }
+
+    // deprecated `options.editor`
+    if (options.editor) {
+      grunt.log.writeln('`changelog.options.editor` is deprecated. Use `grunt-shell` or `grunt-spawn` instead. \nCheckout https://github.com/sindresorhus/grunt-shell or https://github.com/fir3pho3nixx/grunt-spawn for more information.');
     }
 
     changelog(options, function(err, log) {
