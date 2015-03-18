@@ -46,9 +46,51 @@ Supports all options from [conventional-changelog](https://github.com/ajoslin/co
 Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.
 
 ### editor (*deprecated*)
-If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog. **This option will be deprecated in the next major release. Please use [grunt-shell](https://github.com/sindresorhus/grunt-shell) instead.**
+If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog. For instance you can set it to `subl -w`. **This option will be deprecated in the next major release. Please use [grunt-shell](https://github.com/sindresorhus/grunt-shell) or [grunt-spawn](https://github.com/fir3pho3nixx/grunt-spawn) instead.**
 
-For instance you can set it to `subl -w`.
+
+## Edit your changelog manually
+
+Sometimes after auto-generating the changelog you want to be able to review the generated changes or add some notes to the current release, you can polish your changelog manually without changing your workflow (you might use `grunt-release` and modify your changelog before it).
+
+Here are some examples of how to achieve this.
+
+```js
+grunt.initConfig({
+
+  // grunt-shell
+  shell: {
+    changelog: {
+      options: {
+        stdinRawMode: true
+      },
+      command: 'subl -w CHANGELOG.md',
+    }
+  },
+
+  // or grunt-spawn
+  spawn: {
+    changelog: {
+      command: 'vim',
+      pattern: 'CHANGELOG.md',
+      commandArgs: ['{0}'],
+      opts: {
+        stdio: 'inherit'
+      }
+    }
+  },
+
+});
+
+...
+
+grunt.registerTask('publish', ['changelog', 'shell:changelog', 'release']);
+
+// or
+
+grunt.registerTask('publish', ['changelog', 'spawn:changelog', 'release']);
+```
+
 
 ## License
 BSD
