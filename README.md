@@ -6,9 +6,11 @@ Uses git metadata, based on [these commit conventions](https://docs.google.com/d
 
 View [conventional-changelog/CONVENTIONS.md](https://github.com/ajoslin/conventional-changelog/blob/master/CONVENTIONS.md) for a synposis of the conventions with commit examples.
 
+
 ## Example output
 - https://github.com/btford/grunt-conventional-changelog/blob/master/CHANGELOG.md
 - https://github.com/karma-runner/karma/blob/master/CHANGELOG.md
+
 
 ## Getting Started
 
@@ -24,6 +26,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-conventional-changelog');
 ```
 
+
 ## Overview
 In your project's Gruntfile, add a section named `changelog` to the data object passed into `grunt.initConfig()`.
 
@@ -37,6 +40,7 @@ grunt.initConfig({
   }
 });
 ```
+
 
 ## Options
 
