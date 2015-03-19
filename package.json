@@ -25,7 +25,7 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "conventional-changelog": "0.0.15"
+    "conventional-changelog": "0.0.16"
   },
   "devDependencies": {
     "ava": "0.0.4",
