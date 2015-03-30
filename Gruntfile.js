@@ -8,32 +8,42 @@ module.exports = function(grunt) {
       },
       all: [
         'Gruntfile.js',
-        'tasks/*.js',
+        'tasks/*.js'
       ]
     },
-    release: {
-      options: {
-        commitMessage: 'v<%= version %>',
-        tagName: 'v<%= version %>'
-      }
+    nodeunit: {
+      tests: ['test/*.js']
     },
     changelog: {
       options: {
-        file: 'test/tmp/changelog',
-        from: 'v0.1.0',
-        to: 'v1.1.0',
-        version: 'v2.0.0'
+        file: 'CHANGELOG.md'
       }
     },
-    clean: {
-      test: ['test/tmp/**']
+    bump: {
+      options: {
+        updateConfigs: ['pkg'],
+        commitFiles: ['package.json', 'CHANGELOG.md'],
+        commitMessage: 'chore: release v%VERSION%',
+        push: false,
+        createTag: false
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-npm');
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('default', ['clean', 'jshint', 'changelog']);
+  grunt.registerTask('test', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['test']);
+  grunt.registerTask('release', 'bump, changelog and publish to npm.', function(type) {
+    grunt.task.run([
+      'bump:' + (type || 'patch') + ':bump-only',
+      'changelog',
+      'bump-commit',
+      'npm-publish'
+    ]);
+  });
 };

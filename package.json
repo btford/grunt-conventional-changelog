@@ -6,7 +6,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt && node test/test.js && grunt clean"
+    "test": "grunt test"
   },
   "author": "Brian Ford (http://briantford.com)",
   "repository": "btford/grunt-conventional-changelog",
@@ -28,12 +28,12 @@
     "conventional-changelog": "0.0.16"
   },
   "devDependencies": {
-    "ava": "0.0.4",
     "grunt": "^0.4.5",
+    "grunt-bump": "^0.3.0",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.0",
-    "grunt-release": "^0.11.0"
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-npm": "0.0.2"
   },
   "files": [
     "tasks"
