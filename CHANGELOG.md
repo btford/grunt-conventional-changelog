@@ -1,3 +1,19 @@
+<a name"1.2.0"></a>
+## 1.2.0 (2015-03-31)
+
+
+#### Bug Fixes
+
+* **task:** fix that all editors can be started in config ([35a92b1d](https://github.com/btford/grunt-conventional-changelog/commit/35a92b1d), closes [#35](https://github.com/btford/grunt-conventional-changelog/issues/35))
+
+
+#### Breaking Changes
+
+* This module no longer reads your package.json to find version and repository. This logic is moved to conventional-changelog. We want to make this one a pure grunt wrapper.
+
+ ([0f9562ff](https://github.com/btford/grunt-conventional-changelog/commit/0f9562ff))
+
+
 <a name="1.0.0"></a>
 ## 1.1.0 (2014-02-11)
 

@@ -1,6 +1,6 @@
 {
   "name": "grunt-conventional-changelog",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Generate a markdown changelog from git commit data",
   "engines": {
     "node": ">=0.10.0"
