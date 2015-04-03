@@ -1,6 +1,6 @@
-# grunt-conventional-changelog  [![Build Status](https://secure.travis-ci.org/btford/grunt-conventional-changelog.png?branch=master)](http://travis-ci.org/btford/grunt-conventional-changelog)
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
-Generate a changelog using [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
+> Generate a changelog using [conventional-changelog](https://github.com/ajoslin/conventional-changelog)
 
 Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
@@ -98,3 +98,11 @@ grunt.registerTask('publish', ['changelog', 'spawn:changelog', 'release']);
 
 ## License
 BSD
+
+
+[npm-image]: https://badge.fury.io/js/grunt-conventional-changelog.svg
+[npm-url]: https://npmjs.org/package/grunt-conventional-changelog
+[travis-image]: https://travis-ci.org/btford/grunt-conventional-changelog.svg?branch=master
+[travis-url]: https://travis-ci.org/btford/grunt-conventional-changelog
+[daviddm-image]: https://david-dm.org/btford/grunt-conventional-changelog.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/btford/grunt-conventional-changelog

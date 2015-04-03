@@ -1,7 +1,7 @@
 {
   "name": "grunt-conventional-changelog",
   "version": "1.2.0",
-  "description": "Generate a markdown changelog from git commit data",
+  "description": "Generate a changelog from git metadata, using the AngularJS commit conventions",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -25,13 +25,13 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "conventional-changelog": "0.0.16"
+    "conventional-changelog": "0.0.17"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-bump": "^0.3.0",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-jshint": "^0.11.1",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-npm": "0.0.2"
   },
