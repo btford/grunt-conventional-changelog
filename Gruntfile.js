@@ -23,9 +23,7 @@ module.exports = function(grunt) {
       options: {
         updateConfigs: ['pkg'],
         commitFiles: ['package.json', 'CHANGELOG.md'],
-        commitMessage: 'chore: release v%VERSION%',
-        push: false,
-        createTag: false
+        commitMessage: 'chore: release v%VERSION%'
       }
     }
   });
