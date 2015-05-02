@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     var options = this.options({
-      file: 'CHANGELOG.md',
+      dest: 'CHANGELOG.md',
       prepend: true, // false to append
       editor: null, // 'sublime -w'
       github: null // deprecated

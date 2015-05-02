@@ -10,6 +10,7 @@ View [conventional-changelog/CONVENTIONS.md](https://github.com/ajoslin/conventi
 
 
 ## Example output
+
 - https://github.com/btford/grunt-conventional-changelog/blob/master/CHANGELOG.md
 - https://github.com/karma-runner/karma/blob/master/CHANGELOG.md
 
@@ -30,6 +31,7 @@ grunt.loadNpmTasks('grunt-conventional-changelog');
 
 
 ## Overview
+
 In your project's Gruntfile, add a section named `changelog` to the data object passed into `grunt.initConfig()`.
 
 
@@ -49,9 +51,13 @@ grunt.initConfig({
 Supports all options from [conventional-changelog](https://github.com/ajoslin/conventional-changelog#documentation), with the following additions:
 
 ### dest
-Defaults to `CHANGELOG.md`. The destination to write the changelog, and to read the existing changelog from.
+
+Type: `string` Default: `CHANGELOG.md`.
+
+This is an alias of `options.file`.
 
 ### editor (*deprecated*)
+
 If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog. For instance you can set it to `subl -w`. **This option will be removed in the next major release. Please use [grunt-shell](https://github.com/sindresorhus/grunt-shell) or [grunt-spawn](https://github.com/fir3pho3nixx/grunt-spawn) instead.**
 
 
@@ -99,6 +105,7 @@ grunt.registerTask('publish', ['changelog', 'spawn:changelog', 'release']);
 
 
 ## License
+
 BSD
 
 
