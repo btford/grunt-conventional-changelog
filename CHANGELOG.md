@@ -1,3 +1,13 @@
+<a name"1.2.2"></a>
+### 1.2.2 (2015-05-02)
+
+
+#### Bug Fixes
+
+* **dest:** do not ignore `options.dest` ([1dbf0a8c](https://github.com/btford/grunt-conventional-changelog/commit/1dbf0a8c), closes [#55](https://github.com/btford/grunt-conventional-changelog/issues/55))
+* **grunt:** bump task should work properly ([488bb2eb](https://github.com/btford/grunt-conventional-changelog/commit/488bb2eb))
+
+
 <a name"1.2.1"></a>
 ### 1.2.1 (2015-04-03)
 

@@ -1,6 +1,6 @@
 {
   "name": "grunt-conventional-changelog",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Generate a changelog from git metadata, using the AngularJS commit conventions",
   "engines": {
     "node": ">=0.10.0"
