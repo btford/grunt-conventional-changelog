@@ -7,7 +7,18 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       all: [
-        'Gruntfile.js',
+        '*.js',
+        'test/*.js',
+        'tasks/*.js'
+      ]
+    },
+    jscs: {
+      options: {
+        config: '.jscsrc'
+      },
+      all: [
+        '*.js',
+        'test/*.js',
         'tasks/*.js'
       ]
     },
@@ -30,11 +41,12 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-npm');
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('test', ['jshint', 'nodeunit']);
+  grunt.registerTask('test', ['jshint', 'jscs', 'nodeunit']);
   grunt.registerTask('default', ['test']);
   grunt.registerTask('release', 'bump, changelog and publish to npm.', function(type) {
     grunt.task.run([
