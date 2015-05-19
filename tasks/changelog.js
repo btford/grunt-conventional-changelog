@@ -3,7 +3,7 @@ var changelog = require('conventional-changelog');
 
 module.exports = function(grunt) {
   var DESC = 'Generate a changelog from git metadata';
-  grunt.registerTask('changelog', DESC, function() {
+  grunt.registerMultiTask('changelog', DESC, function() {
 
     var done = this.async();
 

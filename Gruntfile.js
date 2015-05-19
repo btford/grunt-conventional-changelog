@@ -26,8 +26,10 @@ module.exports = function(grunt) {
       tests: ['test/*.js']
     },
     changelog: {
-      options: {
-        file: 'CHANGELOG.md'
+      release: {
+        options: {
+          file: 'CHANGELOG.md'
+        }
       }
     },
     bump: {
@@ -51,7 +53,7 @@ module.exports = function(grunt) {
   grunt.registerTask('release', 'bump, changelog and publish to npm.', function(type) {
     grunt.task.run([
       'bump:' + (type || 'patch') + ':bump-only',
-      'changelog',
+      'changelog:release',
       'bump-commit',
       'npm-publish'
     ]);
