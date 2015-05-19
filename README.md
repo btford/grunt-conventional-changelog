@@ -56,10 +56,6 @@ Type: `string` Default: `CHANGELOG.md`.
 
 This is an alias of `options.file`.
 
-### editor (*deprecated*)
-
-If specified, it runs given command before finishing the task. This is useful if you want to manually polish the generated changelog. For instance you can set it to `subl -w`. **This option will be removed in the next major release. Please use [grunt-shell](https://github.com/sindresorhus/grunt-shell) or [grunt-spawn](https://github.com/fir3pho3nixx/grunt-spawn) instead.**
-
 
 ## Edit your changelog manually
 
