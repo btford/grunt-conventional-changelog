@@ -1,60 +1,55 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 > Generate a changelog using [conventional-changelog](https://github.com/ajoslin/conventional-changelog)
 
 *Issues with the output should be reported on the `conventional-changelog` [issue tracker](https://github.com/ajoslin/conventional-changelog/issues).*
 
-Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
-View [conventional-changelog/CONVENTIONS.md](https://github.com/ajoslin/conventional-changelog/blob/v0.0.17/CONVENTIONS.md) for a synopsis of the conventions with commit examples.
-
-
-## Example output
-
-- https://github.com/btford/grunt-conventional-changelog/blob/master/CHANGELOG.md
-- https://github.com/karma-runner/karma/blob/master/CHANGELOG.md
-
-
-## Getting Started
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+## Install
 
 ```
 $ npm install --save-dev grunt-conventional-changelog
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+## Usage
 
 ```js
 grunt.loadNpmTasks('grunt-conventional-changelog');
-```
 
-
-## Overview
-
-In your project's Gruntfile, add a section named `changelog` to the data object passed into `grunt.initConfig()`.
-
-
-```js
 grunt.initConfig({
-  changelog: {
+  conventionalChangelog: {
     options: {
-      // Task-specific options go here.
+      changelogOpts: {
+        // conventional-changelog options go here
+        preset: 'angular'
+      },
+      context: {
+        // context goes here
+      },
+      gitRawCommitsOpts: {
+        // git-raw-commits options go here
+      },
+      parserOpts: {
+        // conventional-commits-parser options go here
+      },
+      writerOpts: {
+        // conventional-changelog-writer options go here
+      }
+    },
+    release: {
+      src: 'CHANGELOG.md'
     }
   }
 });
+
+grunt.registerTask('default', ['conventionalChangelog']);
 ```
 
 
-## Options
+## API
 
-Supports all options from [conventional-changelog](https://github.com/ajoslin/conventional-changelog#documentation), with the following additions:
-
-### dest
-
-Type: `string` Default: `CHANGELOG.md`.
-
-This is an alias of `options.file`.
+See the [conventional-changelog](https://github.com/ajoslin/conventional-changelog) docs.
 
 
 ## Edit your changelog manually
@@ -102,7 +97,7 @@ grunt.registerTask('publish', ['changelog', 'spawn:changelog', 'release']);
 
 ## License
 
-BSD
+MIT
 
 
 [npm-image]: https://badge.fury.io/js/grunt-conventional-changelog.svg
@@ -111,3 +106,5 @@ BSD
 [travis-url]: https://travis-ci.org/btford/grunt-conventional-changelog
 [daviddm-image]: https://david-dm.org/btford/grunt-conventional-changelog.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/btford/grunt-conventional-changelog
+[coveralls-image]: https://coveralls.io/repos/github/btford/grunt-conventional-changelog/badge.svg
+[coveralls-url]: https://coveralls.io/r/btford/grunt-conventional-changelog
