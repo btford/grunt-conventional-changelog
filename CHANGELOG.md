@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## 2.0.1 (2015-07-20)
+
+
+### Bug Fixes
+
+* **warn:** pass in warn ([04873db](https://github.com/btford/grunt-conventional-changelog/commit/04873db))
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2015-07-20)
 
