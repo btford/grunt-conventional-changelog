@@ -51,6 +51,14 @@ grunt.registerTask('default', ['conventionalChangelog']);
 
 See the [conventional-changelog](https://github.com/ajoslin/conventional-changelog) docs.
 
+There are some changes:
+
+### changelogOpts
+
+#### warn
+
+It is `grunt.verbose.writeln`.
+
 
 ## Edit your changelog manually
 
