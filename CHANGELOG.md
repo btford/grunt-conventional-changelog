@@ -1,3 +1,21 @@
+<a name="2.0.0"></a>
+# 2.0.0 (2015-07-20)
+
+
+### Features
+
+* **deprecated:** remove deprecated code ([631ce49](https://github.com/btford/grunt-conventional-changelog/commit/631ce49))
+* **grunt:** make this a multi task ([4c6f3a0](https://github.com/btford/grunt-conventional-changelog/commit/4c6f3a0))
+* **package:** add more keywords and fix description ([4cd34d7](https://github.com/btford/grunt-conventional-changelog/commit/4cd34d7))
+* use conventional-changelog@0.1.0 ([c1a6ede](https://github.com/btford/grunt-conventional-changelog/commit/c1a6ede)), closes [#43](https://github.com/btford/grunt-conventional-changelog/issues/43) [#50](https://github.com/btford/grunt-conventional-changelog/issues/50)
+
+
+### BREAKING CHANGES
+
+* conventional-changelog@0.1.0 is rewritten and so is this module. No backward compatibility. Checkout the docs for more info.
+
+
+
 <a name"1.2.2"></a>
 ### 1.2.2 (2015-05-02)
 
