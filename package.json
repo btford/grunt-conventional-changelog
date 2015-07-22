@@ -30,7 +30,7 @@
   "dependencies": {
     "chalk": "^1.1.0",
     "concat-stream": "^1.5.0",
-    "conventional-changelog": "0.1.1",
+    "conventional-changelog": "^0.1.2",
     "plur": "^2.0.0",
     "q": "^1.4.1"
   },
