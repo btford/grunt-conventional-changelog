@@ -1,3 +1,13 @@
+<a name="3.0.0"></a>
+# 3.0.0 (2015-07-24)
+
+
+### Features
+
+* **deps:** bump conventional-changelog to ^0.2.1 and use new api ([88212f8](https://github.com/btford/grunt-conventional-changelog/commit/88212f8))
+
+
+
 <a name="2.0.2"></a>
 ## 2.0.2 (2015-07-22)
 
