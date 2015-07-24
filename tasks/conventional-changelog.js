@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     function generate(src, dest) {
       return conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
         .pipe(concat(function(data) {
-          if (changelogOpts.allBlocks) {
+          if (changelogOpts.releaseCount === 0) {
             grunt.file.write(dest, data);
           } else {
             var contents = grunt.file.read(src, {
@@ -60,8 +60,8 @@ module.exports = function(grunt) {
           });
         }
       } else {
-        if (!changelogOpts.allBlocks) {
-          grunt.fail.fatal('With `changelogOpts.allBlocks === false` you need to specify a `file.src`');
+        if (changelogOpts.releaseCount !== 0) {
+          grunt.fail.fatal('With `changelogOpts.releaseCount !== 0` you need to specify a `file.src`');
         }
 
         streams.push(generate(null, file.dest));

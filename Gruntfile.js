@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         options: {
           changelogOpts: {
             preset: 'angular',
-            allBlocks: true
+            releaseCount: 0
           }
         },
         src: 'test/fixtures/_CHANGELOG.md',
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         options: {
           changelogOpts: {
             preset: 'angular',
-            allBlocks: true
+            releaseCount: 0
           }
         },
         dest: 'tmp/no-src-all-blocks.md'
