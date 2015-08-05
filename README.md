@@ -95,11 +95,11 @@ grunt.initConfig({
 
 ...
 
-grunt.registerTask('publish', ['changelog', 'shell:changelog', 'release']);
+grunt.registerTask('publish', ['conventionalChangelog', 'shell:changelog', 'release']);
 
 // or
 
-grunt.registerTask('publish', ['changelog', 'spawn:changelog', 'release']);
+grunt.registerTask('publish', ['conventionalChangelog', 'spawn:changelog', 'release']);
 ```
 
 
