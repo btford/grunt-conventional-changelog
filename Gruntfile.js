@@ -112,8 +112,8 @@ module.exports = function(grunt) {
         basePath: 'coverage/instrument/'
       }
     },
-    reloadTasks : {
-      rootPath : 'coverage/instrument/tasks'
+    reloadTasks: {
+      rootPath: 'coverage/instrument/tasks'
     },
     storeCoverage: {
       options: {
