@@ -1,3 +1,13 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v3.0.0...v4.0.0) (2015-08-09)
+
+
+### Features
+
+* **deps:** use conventional-changelog@0.3.0 ([cc51971](https://github.com/btford/grunt-conventional-changelog/commit/cc51971))
+
+
+
 <a name="3.0.0"></a>
 # 3.0.0 (2015-07-24)
 
