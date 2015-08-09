@@ -30,7 +30,7 @@
   "dependencies": {
     "chalk": "^1.1.0",
     "concat-stream": "^1.5.0",
-    "conventional-changelog": "^0.2.1",
+    "conventional-changelog": "^0.3.0",
     "plur": "^2.0.0",
     "q": "^1.4.1"
   },
@@ -44,7 +44,7 @@
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-coveralls": "^1.0.0",
     "grunt-istanbul": "^0.6.1",
-    "grunt-jscs": "^1.8.0",
+    "grunt-jscs": "^2.0.0",
     "grunt-npm": "0.0.2",
     "load-grunt-tasks": "^3.2.0"
   },
