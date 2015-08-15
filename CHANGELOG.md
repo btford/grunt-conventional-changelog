@@ -1,3 +1,9 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/btford/grunt-conventional-changelog/compare/v4.0.0...v4.1.0) (2015-08-15)
+
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v3.0.0...v4.0.0) (2015-08-09)
 
