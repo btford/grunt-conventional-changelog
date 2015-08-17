@@ -2,6 +2,8 @@
 # [4.1.0](https://github.com/btford/grunt-conventional-changelog/compare/v4.0.0...v4.1.0) (2015-08-15)
 
 
+**deps:** use conventional-changelog@0.4.0
+
 
 
 <a name="4.0.0"></a>

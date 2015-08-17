@@ -144,6 +144,19 @@ module.exports = function(grunt) {
         }
       },
     },
+    conventionalGithubReleaser: {
+      release: {
+        options: {
+          auth: {
+            type: 'oauth',
+            token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+          },
+          changelogOpts: {
+            preset: 'angular'
+          }
+        }
+      }
+    },
     bump: {
       options: {
         updateConfigs: ['pkg'],
@@ -179,6 +192,7 @@ module.exports = function(grunt) {
       'bump:' + (type || 'patch') + ':bump-only',
       'conventionalChangelog:release',
       'bump-commit',
+      'conventionalGithubReleaser',
       'npm-publish'
     ]);
   });
