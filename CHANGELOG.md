@@ -1,3 +1,18 @@
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v4.1.0...v5.0.0) (2015-09-30)
+
+
+### Features
+
+* **deps:** bump ([bacd631](https://github.com/btford/grunt-conventional-changelog/commit/bacd631))
+
+
+### BREAKING CHANGES
+
+* deps: Use conventional-changelog^0.5.0
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/btford/grunt-conventional-changelog/compare/v4.0.0...v4.1.0) (2015-08-15)
 
