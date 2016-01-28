@@ -25,6 +25,9 @@ module.exports = function(grunt) {
 
     function generate(src, dest) {
       return conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
+        .on('error', function(err) {
+          grunt.fail.fatal(err);
+        })
         .pipe(concat(function(data) {
           if (changelogOpts.releaseCount === 0) {
             grunt.file.write(dest, data);
