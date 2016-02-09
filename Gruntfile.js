@@ -44,7 +44,8 @@ module.exports = function(grunt) {
     conventionalChangelog: {
       options: {
         changelogOpts: {
-          preset: 'angular'
+          preset: 'angular',
+          outputUnreleased: true
         }
       },
       append: {
@@ -101,9 +102,18 @@ module.exports = function(grunt) {
       //   dest: 'tmp/no-src.md'
       // },
       noFiles: {},
+      emptyOutput: {
+        options: {
+          writerOpts: {
+            transform: function() {
+              return false;
+            }
+          }
+        }
+      },
       release: {
         src: 'CHANGELOG.md'
-      },
+      }
     },
     instrument: {
       files: 'tasks/**/*.js',

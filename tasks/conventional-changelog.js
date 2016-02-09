@@ -28,7 +28,9 @@ module.exports = function(grunt) {
         .on('error', function(err) {
           grunt.fail.fatal(err);
         })
-        .pipe(concat(function(data) {
+        .pipe(concat({
+          encoding: 'buffer'
+        }, function(data) {
           if (changelogOpts.releaseCount === 0) {
             grunt.file.write(dest, data);
           } else {
