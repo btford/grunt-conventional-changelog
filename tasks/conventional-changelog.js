@@ -76,7 +76,7 @@ module.exports = function(grunt) {
     promiseFromStreams(streams)
       .then(function() {
         if (tally) {
-          grunt.log.write('Generated ' + chalk.cyan(tally.toString()) + plur(' file', tally));
+          grunt.log.write('Modified ' + chalk.cyan(tally.toString()) + plur(' file', tally));
         }
         grunt.log.writeln();
 
