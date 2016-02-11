@@ -1,3 +1,23 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v5.0.0...v6.0.0) (2016-02-11)
+
+
+### Bug Fixes
+
+* **concat:** make sure the encoding is always buffer ([75fc4ee](https://github.com/btford/grunt-conventional-changelog/commit/75fc4ee))
+* **error:** attach handler to the stream ([a54a194](https://github.com/btford/grunt-conventional-changelog/commit/a54a194))
+
+### Chores
+
+* **deps:** bump ([0320cba](https://github.com/btford/grunt-conventional-changelog/commit/0320cba))
+
+
+### BREAKING CHANGES
+
+* deps: Using conventional-changelog v1.
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v4.1.0...v5.0.0) (2015-09-30)
 
