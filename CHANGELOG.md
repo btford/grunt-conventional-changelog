@@ -1,3 +1,13 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/btford/grunt-conventional-changelog/compare/v6.0.0...v6.0.1) (2016-02-11)
+
+
+### Bug Fixes
+
+* **log:** should say "Modified" how many files ([15f7955](https://github.com/btford/grunt-conventional-changelog/commit/15f7955))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/btford/grunt-conventional-changelog/compare/v5.0.0...v6.0.0) (2016-02-11)
 
