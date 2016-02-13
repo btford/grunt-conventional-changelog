@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 
     var changelogOpts = opts.changelogOpts;
     changelogOpts.warn = grunt.verbose.writeln;
+    changelogOpts.debug = grunt.log.debug;
     var context = opts.context;
     var gitRawCommitsOpts = opts.gitRawCommitsOpts;
     var parserOpts = opts.parserOpts;
