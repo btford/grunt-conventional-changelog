@@ -1,3 +1,13 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/btford/grunt-conventional-changelog/compare/v6.0.1...v6.1.0) (2016-02-13)
+
+
+### Features
+
+* **debug:** use conventional-changelog 1.1.0 and enable debug ([ecbaf63](https://github.com/btford/grunt-conventional-changelog/commit/ecbaf63))
+
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/btford/grunt-conventional-changelog/compare/v6.0.0...v6.0.1) (2016-02-11)
 
