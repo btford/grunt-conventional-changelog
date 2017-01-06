@@ -38,7 +38,8 @@ grunt.initConfig({
       }
     },
     release: {
-      src: 'CHANGELOG.md'
+      src: 'CHANGELOG.md',
+      dest: 'CHANGELOG.md'
     }
   }
 });
